@@ -136,8 +136,7 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
   For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 */
 
-// CODE HERE 
-
+const each = (arr, cb) => arr.forEach((name, i) => (cb(name, i)))
 
 /*
   Invoke the each function, passing in the names array and a callback function.
@@ -146,7 +145,7 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
   'The item at index [INDEXPARAM] is [ITEMPARAM].'
 */
 
-// CODE HERE
+each(names, (item, index) => console.log(`The item at index ${index} is ${item}.`))
 
 
 
@@ -172,7 +171,7 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
   the two parameters together and return the sum.
 */
 
-// CODE HERE
+const addingFactory = (num1) => (num2) => num1 + num2
 
 /*
   Now that you have addingFactory, you can create other
@@ -186,7 +185,7 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
   10 as an arguemnt.
 */
 
-// CODE HERE
+let addTen = addingFactory(10)
 
 /*
   Now the inner function is stored in the addTen variable! 
@@ -198,8 +197,9 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
   to see the different outputs.
 */
 
-// CODE HERE
+console.log(addTen(199))
 
+console.log(addTen(27))
 /*
   Let's make another function from the addingFactory. 
 
@@ -211,7 +211,7 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
   to add any number to your favorite number!
 */
 
-// CODE HERE
+let addThirteen = addingFactory(13)
 
 
 
@@ -219,42 +219,48 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
 ////////// CHALLENGE 2 //////////
 
 /*
-  Write a function called getUserById that takes in three parameters: an array of objects (users), an id and a callback, and searches for the user with a matching id.
+  Write a function called getUserById that takes in three parameters: an array of objects (users), an id and a callback, 
+  and searches for the user with a matching id.
   When the correct user object is found, invoke the callback with the user object as an argument.
   You'll learn about objects in our next lecture. But you can research objects and attempt this problem.
 */
 
 // // Do not edit the code below.
-// var users = [
-//   {
-//     id: '12d',
-//     email: 'tyler@gmail.com',
-//     name: 'Tyler',
-//     address: '167 East 500 North'
-//   },
-//   {
-//     id: '15a',
-//     email: 'cahlan@gmail.com',
-//     name: 'Cahlan',
-//     address: '135 East 320 North'
-//   },
-//   {
-//     id: '16t',
-//     email: 'ryan@gmail.com',
-//     name: 'Ryan',
-//     address: '192 East 32 North'
-//   },
-// ]
+var users = [
+  {
+    id: '12d',
+    email: 'tyler@gmail.com',
+    name: 'Tyler',
+    address: '167 East 500 North'
+  },
+  {
+    id: '15a',
+    email: 'cahlan@gmail.com',
+    name: 'Cahlan',
+    address: '135 East 320 North'
+  },
+  {
+    id: '16t',
+    email: 'ryan@gmail.com',
+    name: 'Ryan',
+    address: '192 East 32 North'
+  },
+]
 // // Do not edit the code above.
 
-// // CODE HERE 
-
+const getUserById = (arr, id, cb) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].id === id) {
+      return cb(arr[i])
+    }
+  }
+}
 
 
 // // UNCOMMENT THE FUNCTION CALL BELOW
 // // RUN THIS FILE WITH NODE
 // // CHECK YOUR ANSWER
 
-// getUserById(users, '16t', user => {
-//   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
-// })
+getUserById(users, '16t', user => {
+  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
+})
